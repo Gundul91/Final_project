@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+/* DA FARE:
+  non riesco a dare una classe all'elemento che contiene la mappa in modo
+  da potergli assegnare uno stile dal classe
+*/
+
 var locations = [
   {title: 'Piazza Venezia', location: {lat: 41.896290, lng: 12.482618}},
   {title: 'Foro di Traiano', location: {lat: 41.895179, lng: 12.485337}},
@@ -61,6 +66,11 @@ class MapContainer extends Component {
   }
 }
 
+const LoadingContainer = (props) => (
+  <div className="map">Fancy loading container!</div>
+)
+
 export default GoogleApiWrapper({
-  apiKey: ( "AIzaSyCjGfazU6dDNEmytBQ1oEe3p71QFpHFLiA" )
+  apiKey: ( "AIzaSyCjGfazU6dDNEmytBQ1oEe3p71QFpHFLiA" ),
+  LoadingContainer: LoadingContainer
 })(MapContainer)
