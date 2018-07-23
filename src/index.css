@@ -4,14 +4,24 @@ body {
   font-family: sans-serif;
 }
 
-.LocationsBar {
-  display: inline-block;
+.container {
   width: 20%;
   height: 100%;
 }
 
-.map {
-  display: inline-block;
-  width: 80%;
-  height: 20%;
+.container>div:nth-child(2) {
+  display: inline;
+}
+
+.LocationsBar {
+  width: 20%;
+  background-color: black;
+  color: white;
+  position: absolute;
+  display: inline;
+  height: 100%;
+}
+
+.location {
+  cursor: pointer;
 }

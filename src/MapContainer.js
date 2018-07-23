@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
-/* DA FARE:
-  non riesco a dare una classe all'elemento che contiene la mappa in modo
-  da potergli assegnare uno stile dal classe
-*/
+import LocationsBar from './LocationsBar.js';
 
 var locations = [
   {title: 'Piazza Venezia', location: {lat: 41.896290, lng: 12.482618}},
@@ -14,19 +10,22 @@ var locations = [
   {title: 'Colosseo', location: {lat: 41.890210, lng: 12.492231}}
 ]
 
-class MapContainer extends Component {
+let show = locations
+
+export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
   };
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
+    console.log(marker)
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
-    });
+    })};
 
   onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
@@ -38,14 +37,20 @@ class MapContainer extends Component {
   };
 
   render() {
+    const style = {
+      float: 'right',
+      position: 'relative',
+      width: '80%',
+      height: '100%'
+    }
     return (
       <div className="MapContainer">
-        <Map google={this.props.google} onClick={this.onMapClicked} initialCenter={{
+        <Map google={this.props.google} onClick={this.onMapClicked} style={style} initialCenter={{
               lat: 41.898611,
               lng: 12.476873
             }} zoom={14}>
 
-          {locations.map((location) => {
+          {show.map((location) => {
             return (<Marker onClick={this.onMarkerClick}
               title={location.title}
               name={location.title}
@@ -59,6 +64,7 @@ class MapContainer extends Component {
                 <h1>{this.state.selectedPlace.name}</h1>
               </div>
           </InfoWindow>
+          <LocationsBar onMarkerClick={this.onMarkerClick.bind(this)}/>
 
         </Map>
       </div>

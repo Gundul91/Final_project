@@ -32,8 +32,9 @@ export default class FoursquareDemo extends Component {
   render() {
     return (
     <div>
-        <div>Items:</div>
-        { this.state.items.map(item=> { return <div key={item.id}>{item.name}</div>}) }
+      <div>Foursquare ⇩</div>
+      <div>Items:</div>
+      { this.state.items.map(item=> { return <div key={item.id}>{item.name}</div>}) }
     </div>
   )
   }
